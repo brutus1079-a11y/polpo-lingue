@@ -7,11 +7,13 @@
   </defs>
   <rect width="512" height="512" fill="url(#bg)"/>
   <!-- speech bubble -->
-  <g transform="translate(300 70)">
-    <rect x="0" y="0" width="150" height="104" rx="30" fill="#FFFFFF"/>
-    <path d="M30 96 L18 138 L66 100 Z" fill="#FFFFFF"/>
-    <text x="75" y="70" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="58" fill="#D52B1E" letter-spacing="1">DE</text>
+  <g transform="translate(282 44)">
+    <rect x="0" y="0" width="190" height="126" rx="30" fill="#FFFFFF"/>
+    <path d="M38 118 L24 160 L76 122 Z" fill="#FFFFFF"/>
+    <text x="95" y="66" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="58" fill="#D52B1E">DE</text>
+    <text x="95" y="102" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="25" letter-spacing="2" fill="#14202B">BUSINESS</text>
   </g>
+  <g transform="translate(-16 18)">
   <!-- octopus -->
   <g fill="#FFFFFF">
     <path d="M206 128c-62 0-104 46-104 104 0 34 14 60 34 78h140c20-18 34-44 34-78 0-58-42-104-104-104z"/>
@@ -33,4 +35,5 @@
     <circle cx="246" cy="218" r="6"/>
   </g>
   <path d="M188 268q19 16 38 0" fill="none" stroke="#D52B1E" stroke-width="9" stroke-linecap="round"/>
+  </g>
 </svg>
