@@ -4375,7 +4375,7 @@ function vbRender(){
   $("#screen").innerHTML=`${head("Risultato")}<div class="l-body"><div class="l-inner p2">${body}</div></div><div class="l-foot"><div class="foot-in" style="display:flex;gap:10px">${foot}</div></div>`;
 }
 
-const APPV="2026-11-16.5";let NEWV=null;
+const APPV="2026-11-16.9";let NEWV=null;
 async function checkUpdate(){try{const h=await (await fetch("./index.html?nv="+Date.now(),{cache:"no-store"})).text();const m=/const APPV="([^"]+)"/.exec(h);if(m&&m[1]!==APPV){if(NEWV!==m[1]){NEWV=m[1];if(!L&&!R&&!ST&&!P2S)render()}return true}}catch(e){}return false}
 async function appUpdate(){save();const nv=await checkUpdate();try{if(navigator.serviceWorker){const rs=await navigator.serviceWorker.getRegistrations();await Promise.all(rs.map(r=>r.update().catch(()=>{})))}}catch(e){}try{const ks=await caches.keys();await Promise.all(ks.map(k=>caches.delete(k)))}catch(e){}
  if(!nv&&!NEWV){openModal(`<h2>${esc(t("updLatest"))}</h2><p class="muted num">${esc(APPV)}</p><p class="muted">${esc(t("updKeep"))}</p><div class="actions"><button class="btn block" data-act="closemodal">OK</button></div>`,"sm");return}location.replace(location.pathname+"?v="+Date.now())}
