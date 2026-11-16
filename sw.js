@@ -1,4 +1,4 @@
-const V='polpo-v23';
+const V='polpo-v24';
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(['./','./index.html','./manifest.webmanifest','./icon-192.png'])));self.skipWaiting()});
 self.addEventListener('activate',e=>{const p=caches.keys().then(ks=>{const old=ks.filter(k=>k!==V);return Promise.all(old.map(k=>caches.delete(k))).then(()=>self.clients.claim()).then(()=>old.length)});e.waitUntil(p);p.then(n=>{if(n)setTimeout(()=>self.clients.matchAll({type:'window'}).then(cs=>cs.forEach(c=>{try{const u=new URL(c.url);u.searchParams.set('v',V);c.navigate(u.href).catch(()=>{})}catch(x){}})),300)})});
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;const u=new URL(r.url);
