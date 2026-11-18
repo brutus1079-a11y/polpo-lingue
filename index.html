@@ -3061,7 +3061,7 @@ function renderDone(){
   <button class="btn good" data-act="exit">${esc(t("cont"))}</button></div>`;
   const b=$("#screen .btn");if(b)b.focus();
 }
-function exitScreen(){P2S=null;VBQ=null;closeModal();$("#screen").hidden=true;$("#screen").innerHTML="";document.body.style.overflow="";L=null;R=null;ST=null;stopSpeech();render();window.scrollTo(0,0)}
+function exitScreen(){P2S=null;VBQ=null;closeModal();$("#screen").hidden=true;$("#screen").innerHTML="";document.body.style.overflow="";L=null;R=null;ST=null;stopSpeech();if(window.POLPO_RELOAD){location.replace(location.pathname+"?v="+Date.now());return}render();window.scrollTo(0,0)}
 
 /* ---------- flashcard review ---------- */
 let R=null;
@@ -4389,7 +4389,7 @@ function vbRender(){
   $("#screen").innerHTML=`${head("Risultato")}<div class="l-body"><div class="l-inner p2">${body}</div></div><div class="l-foot"><div class="foot-in" style="display:flex;gap:10px">${foot}</div></div>`;
 }
 
-const APPV="2026-11-17.1";let NEWV=null;
+const APPV="2026-11-18.1";let NEWV=null;
 async function checkUpdate(){try{const h=await (await fetch("./index.html?nv="+Date.now(),{cache:"no-store"})).text();const m=/const APPV="([^"]+)"/.exec(h);if(m&&m[1]!==APPV){if(NEWV!==m[1]){NEWV=m[1];if(!L&&!R&&!ST&&!P2S)render()}return true}}catch(e){}return false}
 async function appUpdate(){save();
  const ov=document.createElement("div");ov.className="upd-ov";ov.innerHTML='<div class="upd-box" role="status"><div class="upd-spin"></div><b>'+esc(t("updRun"))+'</b><small class="muted" id="updStep"></small><div class="upd-track"><i id="updBar"></i></div></div>';document.body.appendChild(ov);
@@ -4415,4 +4415,4 @@ render();
 initCloud();
 </script>
 
-<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script></body></html>
+<script>if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));navigator.serviceWorker.addEventListener("message",e=>{if(!e.data||!e.data.polpoUpd)return;try{save()}catch(x){}if(L||R||ST||P2S||VBQ){window.POLPO_RELOAD=1;return}location.replace(location.pathname+"?v="+Date.now())})}</script></body></html>
